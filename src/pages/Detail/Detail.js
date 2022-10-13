@@ -8,11 +8,12 @@ import Pen from "../../components/icons/Pen";
 import Plus from "../../components/icons/Plus";
 import Sort from "../../components/icons/Sort";
 import Trash from "../../components/icons/Trash";
-import MyVerticallyCenteredModal from "../../components/Modals/ModalDelete";
 import ModalAdd from "../../components/Modals/ModalAdd";
 import ModalUpate from "../../components/Modals/ModalUpdate";
 import DropdownCutome from "../../components/atoms/DropdownCutome";
 import InputComp from "./InputComp";
+import ModalDeleteItem from "../../components/Modals/ModalDeleteItem";
+import "./detail.css";
 
 export default function Detail() {
   const navigate = useNavigate();
@@ -35,24 +36,23 @@ export default function Detail() {
   const [activtyId, setActivityId] = useState("");
 
   const [editTitle, setEditTitle] = useState(false);
-  const [dataActivity , setDataActivity] = useState({
-    title : "",
-    id : ""
+  const [dataActivity, setDataActivity] = useState({
+    title: "",
+    id: "",
   });
+  const [titleDelet, setTitileDelet] = useState("");
 
   const getDetail = async () => {
     const data = await fetch(
       `https://todo.api.devcode.gethired.id/activity-groups/${id}`
     );
     const hasil = await data.json();
-    setDataActivity(prev => ({
+    setDataActivity((prev) => ({
       ...prev,
-      title : hasil.title,
-      id : hasil.id
+      title: hasil.title,
+      id: hasil.id,
+    }));
 
-    }))
-
-  
     setItems((prev) => ({
       ...prev,
       data: hasil.todo_items,
@@ -61,8 +61,25 @@ export default function Detail() {
   };
 
   useEffect(() => {
+    const getDetail = async () => {
+      const data = await fetch(
+        `https://todo.api.devcode.gethired.id/activity-groups/${id}`
+      );
+      const hasil = await data.json();
+      setDataActivity((prev) => ({
+        ...prev,
+        title: hasil.title,
+        id: hasil.id,
+      }));
+  
+      setItems((prev) => ({
+        ...prev,
+        data: hasil.todo_items,
+        loading: false,
+      }));
+    };
     getDetail();
-  }, []);
+  }, [id]);
 
   const postItems = async () => {
     const payload = {
@@ -87,9 +104,10 @@ export default function Detail() {
     getDetail();
   };
 
-  const handleModal = (id) => {
+  const handleModal = (id, title) => {
     setModalShow(true);
     setIdDel(id);
+    setTitileDelet(title);
   };
 
   const handleModalUpdate = (priority, title, id, activityId) => {
@@ -174,9 +192,9 @@ export default function Detail() {
 
   const handleKeyPress = async (e) => {
     const payload = {
-      title : dataActivity.title
-    }
-    if (e.key === 'Enter'){
+      title: dataActivity.title,
+    };
+    if (e.key === "Enter") {
       const data = await fetch(
         `https://todo.api.devcode.gethired.id/activity-groups/${dataActivity.id}`,
         {
@@ -188,20 +206,43 @@ export default function Detail() {
           body: JSON.stringify(payload),
         }
       );
-  
+
       await data.json();
-      setEditTitle(false)
+      setEditTitle(false);
     }
-  }
+  };
+
+  const handleOnFocusOut = async (e) => {
+    const payload = {
+      title: dataActivity.title,
+    };
+
+    const data = await fetch(
+      `https://todo.api.devcode.gethired.id/activity-groups/${dataActivity.id}`,
+      {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    await data.json();
+    setEditTitle(false);
+  };
+
   return (
     <>
       <NavbarComp />
       <Container>
-        <MyVerticallyCenteredModal
+        <ModalDeleteItem
           show={modalShow}
           onHide={() => setModalShow(false)}
           getdata={() => getDetail()}
           modal={setModalShow}
+          title={titleDelet}
           id={idDel}
           type={"Items"}
         />
@@ -233,17 +274,29 @@ export default function Detail() {
               <div className="col-9">
                 <ChevronLeft onClick={() => navigate(-1)} />
                 <span
+                  data-cy="button-edit-title"
                   onClick={() => setEditTitle(true)}
-                  style={{ fontSize: 27 }}
+                  className="btn-edit-title"
                 >
                   {editTitle ? (
-                    <input autoFocus className="modif-input" onChange={(e) => setDataActivity( prev => ({
-                      ...prev,
-                      title: e.target.value
-                    }))} onKeyDown={handleKeyPress} type="text" value={dataActivity.title} />
+                    <input
+                      data-cy="form-edit"
+                      autoFocus
+                      className="modif-input"
+                      onChange={(e) =>
+                        setDataActivity((prev) => ({
+                          ...prev,
+                          title: e.target.value,
+                        }))
+                      }
+                      onKeyDown={handleKeyPress}
+                      onBlur={handleOnFocusOut}
+                      type="text"
+                      value={dataActivity.title}
+                    />
                   ) : (
                     <>
-                      <b>{dataActivity.title}</b>
+                      <b data-cy="title-activity">{dataActivity.title}</b>
                       <span>
                         <Pen />
                       </span>
@@ -255,17 +308,9 @@ export default function Detail() {
               <div className="col-3 d-flex">
                 <DropdownCutome sortTodos={sortTodos} />
                 <button
+                  data-cy="icon-cirle"
                   onClick={() => setLgShow(true)}
-                  style={{
-                    backgroundColor: "#16ABF8",
-                    fontSize: 23,
-                    color: "white",
-                    padding: 15,
-                    width: 160,
-                    borderRadius: 45,
-                    border: "none",
-                    fontFamily: "Poppins",
-                  }}
+                  className="btn-plus-mod"
                 >
                   <Plus />
                   Tambah
@@ -275,7 +320,7 @@ export default function Detail() {
 
             {items.data.map((d, i) => {
               return (
-                <Card key={i} className="mt-3 shadow-mod" style={{ width: "92%",height: 70 }}>
+                <Card key={i} className="mt-3 shadow-mod card-activis">
                   <Card.Body>
                     <div className="d-flex mt-1">
                       <div className="col-11">
@@ -284,8 +329,9 @@ export default function Detail() {
                           active={d.is_active}
                           id={d.id}
                         />
-                        <span style={{ marginLeft: 15, fontSize: 20 }}>
+                        <span className="icon-circle">
                           <button
+                            data-cy="circle-icon"
                             style={{
                               border: "none",
                               borderRadius: "50%",
@@ -310,18 +356,22 @@ export default function Detail() {
                             {" "}
                           </button>
                           {d.is_active ? (
-                            <span>{d.title} </span>
+                            <span
+                              className="title-activity-active"
+                              data-cy="title-activity"
+                            >
+                              {d.title}{" "}
+                            </span>
                           ) : (
                             <span
-                              style={{
-                                textDecoration: "line-through",
-                                color: "#D8D9CF",
-                              }}
+                              data-cy="title-activity"
+                              className="title-activity"
                             >
                               {d.title}{" "}
                             </span>
                           )}
                           <span
+                            data-cy="button-title-update"
                             onClick={() =>
                               handleModalUpdate(
                                 d.priority,
@@ -330,7 +380,7 @@ export default function Detail() {
                                 d.activity_group_id
                               )
                             }
-                            style={{ cursor: "pointer" }}
+                            className="pen-update"
                           >
                             <Pen />
                           </span>
@@ -338,9 +388,8 @@ export default function Detail() {
                       </div>
 
                       <div
-                        onClick={() => handleModal(d.id)}
-                        className="col-1"
-                        style={{ marginLeft: "6%", cursor: "pointer" }}
+                        onClick={() => handleModal(d.id, d.title)}
+                        className="col-1 trash-icon"
                       >
                         <Trash />
                       </div>
@@ -356,17 +405,28 @@ export default function Detail() {
               <div className="col-9">
                 <ChevronLeft onClick={() => navigate(-1)} />
                 <span
+                  data-cy="button-edit-title-activity"
+                  className="btn-edit-title"
                   onClick={() => setEditTitle(true)}
-                  style={{ fontSize: 27 }}
                 >
                   {editTitle ? (
-                    <input autoFocus className="modif-input" onChange={(e) => setDataActivity( prev => ({
-                      ...prev,
-                      title: e.target.value
-                    }))} onKeyDown={handleKeyPress} type="text" value={dataActivity.title} />
+                    <input
+                      data-cy="form-edit-title"
+                      autoFocus
+                      className="modif-input"
+                      onChange={(e) =>
+                        setDataActivity((prev) => ({
+                          ...prev,
+                          title: e.target.value,
+                        }))
+                      }
+                      onKeyDown={handleKeyPress}
+                      type="text"
+                      value={dataActivity.title}
+                    />
                   ) : (
                     <>
-                      <b>{dataActivity.title}</b>
+                      <b data-cy="title-activity">{dataActivity.title}</b>
                       <span>
                         <Pen />
                       </span>
@@ -376,19 +436,11 @@ export default function Detail() {
               </div>
 
               <div className="d-flex col-3">
-             <Sort />
+                <Sort />
                 <button
+                  data-cy="sort-item"
                   onClick={() => setLgShow(true)}
-                  style={{
-                    backgroundColor: "#16ABF8",
-                    fontSize: 23,
-                    color: "white",
-                    padding: 15,
-                    width: 160,
-                    borderRadius: 45,
-                    border: "none",
-                    fontFamily: "Poppins",
-                  }}
+                  className="btn-plus-mod"
                 >
                   <Plus />
                   Tambah
@@ -399,6 +451,7 @@ export default function Detail() {
             <div className="d-flex row container justify-content-center mt-5">
               <center>
                 <img
+                  data-cy="image-empty-item"
                   src="https://ik.imagekit.io/mlnzyx/devcode-todo/new-todos_icWrDUS4D0.webp?updatedAt=1641870367004"
                   alt="to do list"
                   className="mt-5"

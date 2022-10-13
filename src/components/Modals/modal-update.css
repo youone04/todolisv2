@@ -1,0 +1,18 @@
+.label-form-edit{
+    font-size: 17px;
+    font-family: "Poppins",sans-serif;
+}
+.edit-item-title{
+    font-family: "Poppins",sans-serif;
+}
+.form-edit{
+    height: 60px;
+}
+.button-save-edit{
+    background-color: #16ABF8;
+    border: none;
+    border-radius: 60px;
+    width: 120px;
+    height: 50px;
+    font-family: "Poppins",sans-serif;
+}

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import NavbarComp from "../../components/NavbarComp/NavbarComp";
 import { Container, Card } from "react-bootstrap";
-import moment from "moment";
+import moment from 'moment';
+import "moment/locale/id";
 import { useNavigate } from "react-router-dom";
 import MyVerticallyCenteredModal from "../../components/Modals/ModalDelete";
 import Plus from "../../components/icons/Plus";
@@ -9,6 +10,7 @@ import Trash from "../../components/icons/Trash";
 import './home.css';
 
 export default function Home() {
+  moment.locale('id')
   const navigate = useNavigate();
   const [items, setItems] = useState({
     data: [],
@@ -16,6 +18,7 @@ export default function Home() {
   });
   const [modalShow, setModalShow] = useState(false);
   const [id, setId] = useState("");
+  const [title, setTitle] = useState("");
 
   const getData = async () => {
     const data = await fetch(
@@ -54,10 +57,11 @@ export default function Home() {
     getData();
   };
 
-  const deleteData = async (e, id) => {
+  const deleteData = async (e, id ,title) => {
     e.stopPropagation();
     setModalShow(true);
     setId(id);
+    setTitle(title)
   };
 
   return (
@@ -69,9 +73,12 @@ export default function Home() {
         getdata={() => getData()}
         modal={setModalShow}
         id={id}
+        title={title}
         type={'Activity'}
       />
-      <Container style={{ width: '75%' }}>
+      <Container 
+      style={{ width: '75%' }}
+      >
         {items.loading ? (
           <p>loading</p>
         ) : items.data.length <= 0 ? (
@@ -80,16 +87,9 @@ export default function Home() {
               <h2 className="activity-title">Activity</h2>
               <button
                 onClick={() => postData()}
-                style={{
-                  backgroundColor: "#16ABF8",
-                  fontSize: 23,
-                  color: "white",
-                  padding: 15,
-                  width: 160,
-                  borderRadius: 45,
-                  border: "none",
-                  fontFamily: "Poppins",
-                }}
+                data-cy='button-add'
+                className="btn-plus-mod"
+
               >
                 <Plus />
                 Tambah
@@ -97,6 +97,7 @@ export default function Home() {
             </div>
             <center>
               <img
+              data-cy='image-home'
                 src="https://ik.imagekit.io/mlnzyx/devcode-todo/new-todos_icWrDUS4D0.webp?updatedAt=1641870367004"
                 alt="to do list"
                 className="mt-5"
@@ -108,18 +109,9 @@ export default function Home() {
             <div className="d-flex justify-content-between">
               <h2 className="activity-title">Activity</h2>
               <button
+              data-cy='button-add'
                 onClick={() => postData()}
-                style={{
-                  backgroundColor: "#16ABF8",
-                  fontSize: 23,
-                  height: 60,
-                  color: "white",
-                  padding: 15,
-                  width: 160,
-                  borderRadius: 45,
-                  border: "none",
-                  fontFamily: "Poppins",
-                }}
+                className="btn-plus-mod"
               >
                 <Plus />
                 Tambah
@@ -131,7 +123,7 @@ export default function Home() {
                 return (
                   <Card
                     onClick={() => navigate(`/detail/${data.id}`)}
-                    className="col-4 shadow-mod"
+                    className="col-sm-12 col-md-2 col-lg-4 shadow-mod"
                     key={i}
                     style={{
                       marginLeft: 15,
@@ -142,15 +134,15 @@ export default function Home() {
                     }}
                   >
                     <Card.Body>
-                      <Card.Title><p className="title-card">{data.title}</p></Card.Title>
+                      <Card.Title><p data-cy='title-card' className="title-card">{data.title}</p></Card.Title>
                       <Card.Text style={{ height: 135 }}></Card.Text>
                       <div className="d-flex">
-                        <div className="col-11">
+                        <div data-cy='date-add' className="col-11">
                           {moment(data.created_at).format("LL")}
                         </div>
                         <div
                           className="col-1"
-                          onClick={(e) => deleteData(e, data.id)}
+                          onClick={(e) => deleteData(e, data.id, data.title)}
                         >
                           <Trash
                             data-cy="activity-item-delete-button"

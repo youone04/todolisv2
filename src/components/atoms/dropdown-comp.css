@@ -1,0 +1,12 @@
+.form-select{
+    width: 200px;
+    height: 60px;
+}
+.option-mod{
+    font-family: "Poppins",sans-serif;
+}
+.title-label{
+    font-size: 17px;
+    font-family: Proppins;
+    font-weight: bold;
+}

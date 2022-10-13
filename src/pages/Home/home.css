@@ -3,6 +3,7 @@
 }
 .title-card{
     font-weight: bold;
+    font-family: "Poppins",sans-serif;
 }
 .card-items{
     margin-top: 30px;
@@ -11,4 +12,14 @@
     box-shadow: -1px 5px 9px 0px rgba(84,71,71,0.44);
     -webkit-box-shadow: -1px 5px 9px 0px rgba(84,71,71,0.44);
     -moz-box-shadow: -1px 5px 9px 0px rgba(84,71,71,0.44);
+}
+.btn-plus-mod{
+    background-color: #16ABF8;
+    font-size: 23px;
+    color: white;
+    padding: 15px;
+    width: 160px;
+    border-radius: 45px;
+    border: none;
+    font-family: "Poppins",sans-serif;
 }

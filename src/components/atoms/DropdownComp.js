@@ -1,5 +1,5 @@
 import Form from "react-bootstrap/Form";
-import Badge from "react-bootstrap/Badge";
+import "./dropdown-comp.css";
 
 const indicatorList = [
   {
@@ -24,18 +24,28 @@ const indicatorList = [
   },
 ];
 
-function DropdownComp({setPriority , priority}) {
+function DropdownComp({ setPriority, priority }) {
   return (
     <>
+      <Form.Label>
+        <span className="title-label" 
+         data-cy="form-select-label"
+        >Priority</span>
+      </Form.Label>
       <Form.Select
-        style={{ width: 200, height: 60 }}
+        data-cy="form-select-item"
+        className="form-select"
         aria-label="Default select example"
-        onChange={e => setPriority(e.target.value)}
+        onChange={(e) => setPriority(e.target.value)}
         defaultValue={priority}
       >
         {indicatorList.map((d, i) => {
           return (
-            <option key={i} value={d.title.replace(' ', '-').toLowerCase()}>
+            <option
+              className="option-mod"
+              key={i}
+              value={d.title.replace(" ", "-").toLowerCase()}
+            >
               {d.title}
             </option>
           );

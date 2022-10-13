@@ -1,0 +1,24 @@
+.warning-delete-item{
+    font-size: 20px;
+    width: 80%;
+}
+.button-cancel-delte-item{
+    height: 50px;
+    border: none !important;
+    background-color: #80808030 !important;
+    border-radius: 15px;
+    width: 120px;
+    padding: 8px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.button-delete{
+    height: 50px;
+    border: none;
+    background-color: #80808030;
+    border-radius: 15px;
+    width: 120px;
+    padding: 8px;
+    font-size: 20px;
+    font-weight: bold;
+}

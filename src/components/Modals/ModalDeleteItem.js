@@ -2,12 +2,13 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Danger from "../icons/Danger";
 import swal from "sweetalert";
-import "./modal-delete.css";
+import "./modal-delete-item.css";
 
-export default function MyVerticallyCenteredModal(props) {
+export default function ModalDeleteItem(props) {
   const handleDelete = async () => {
+    
       await fetch(
-        `https://todo.api.devcode.gethired.id/activity-groups/${props.id}`,
+        `https://todo.api.devcode.gethired.id/todo-items/${props.id}`,
         {
           method: "DELETE",
           headers: {
@@ -19,6 +20,7 @@ export default function MyVerticallyCenteredModal(props) {
       props.getdata();
       props.modal(false)
       swal("", "Activiy Berhasil Dihapus", "success");
+
   };
 
   return (
@@ -33,18 +35,18 @@ export default function MyVerticallyCenteredModal(props) {
       <Modal.Body>
       <center>
       <Danger data-cy='modal-delete-icon' />
-        <p data-cy='warning-delete-item' 
-        className="mt-5 warning-delete-activitis" 
+        <p data-cy="warning-delete-item" className="mt-5 warning-delete-item" 
         >
-        Apakah anda yakin ingin menghapus Activity <b> "{props.title}"</b>?
+        Apakah anda yakin menghapus item <b> "{props.title}"</b>?
         </p>
         <Button 
-        data-cy='button-cancel-delete'
-        className="m-2 text-black button-cancel-delete" 
+        data-cy="buton-cancel-delete-item"
+        className="m-2 text-black button-cancel-delte-item" 
         onClick={props.onHide}>Batal</Button>
         <Button 
-        data-cy='button-confirm-delete'
-        className="bg-danger button-delete" onClick={handleDelete}>Hapus</Button>
+        data-cy="buton-delete-item"
+        className="bg-danger button-delete" 
+        onClick={handleDelete}>hapus</Button>
       </center>
       </Modal.Body>
     </Modal>

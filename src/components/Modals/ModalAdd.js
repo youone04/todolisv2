@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import DropdownComp from "../../components/atoms/DropdownComp";
+import "./modal-add.css";
 
 export default function ModalAdd(props) {
   return (
@@ -13,7 +14,11 @@ export default function ModalAdd(props) {
       aria-labelledby="example-modal-sizes-title-lg"
     >
       <Modal.Header closeButton>
-        <Modal.Title id="example-modal-sizes-title-lg">
+        <Modal.Title
+          className="title-modall-add"
+          id="example-modal-sizes-title-lg"
+          data-cy="modal-add-title"
+        >
           Tambah List Item
         </Modal.Title>
       </Modal.Header>
@@ -21,22 +26,27 @@ export default function ModalAdd(props) {
         <Form>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>
-              <span style={{ fontSize: 28 }}>Nama List Item</span>
+              <span data-cy="modal-add-label" className="label-modal-add">
+                Nama List Item
+              </span>
             </Form.Label>
             <Form.Control
-              style={{ height: 60 }}
+              className="form-control-add"
               type="text"
+              data-cy="modal-add-form-title"
               placeholder="Tambahkan Nama List Item"
               onChange={(e) => props.setTitle(e.target.value)}
             />
           </Form.Group>
-          <Form.Label>
-            <span style={{ fontSize: 28 }}>Priority</span>
-          </Form.Label>
           <DropdownComp setPriority={props.setPriority} />
           <div className="d-flex justify-content-between mt-3">
             <div></div>
-            <Button onClick={props.postItems} variant="primary" type="button">
+            <Button
+              data-cy="modal-add-button"
+              onClick={props.postItems}
+              className="button-modal-add"
+              type="button"
+            >
               SIMPAN
             </Button>
           </div>
