@@ -46,6 +46,7 @@ export default function ModalAdd(props) {
               data-cy='modal-add-save-button'
               className="button-modal-add"
               type="button"
+              disabled={props.title === ""?true:false}
             >
               SIMPAN
             </Button>

@@ -53,6 +53,7 @@ export default function ModalUpate(props) {
               onClick={props.updatetItems}
               className="button-save-edit"
               type="button"
+              disabled={props.title === ""?true:false}
             >
               SIMPAN
             </Button>

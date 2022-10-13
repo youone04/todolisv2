@@ -6,7 +6,7 @@ import Card from "react-bootstrap/Card";
 import ChevronLeft from "../../components/icons/ChevronLeft";
 import Pen from "../../components/icons/Pen";
 import Plus from "../../components/icons/Plus";
-import Sort from "../../components/icons/Sort";
+// import Sort from "../../components/icons/Sort";
 import Trash from "../../components/icons/Trash";
 import ModalAdd from "../../components/Modals/ModalAdd";
 import ModalUpate from "../../components/Modals/ModalUpdate";
@@ -247,6 +247,7 @@ export default function Detail() {
         />
 
         <ModalAdd
+        title={title}
           lgShow={lgShow}
           setLgShow={setLgShow}
           setTitle={setTitle}
@@ -290,12 +291,13 @@ export default function Detail() {
                       }
                       onKeyDown={handleKeyPress}
                       onBlur={handleOnFocusOut}
+                      data-cy='todo-title'
                       type="text"
                       value={dataActivity.title}
                     />
                   ) : (
                     <>
-                      <b data-cy='todo-title'>{dataActivity.title}</b>
+                      <b>{dataActivity.title}</b>
                       <span>
                         <Pen />
                       </span>
@@ -308,7 +310,7 @@ export default function Detail() {
                 <DropdownCutome sortTodos={sortTodos} data-cy='todo-sort-button' />
                 <button
                   onClick={() => setLgShow(true)}
-                  data-cy='todo-add-button'
+                data-cy='modal-add'
                   className="btn-plus-mod"
                 >
                   <Plus />
@@ -388,7 +390,7 @@ export default function Detail() {
 
                       <div
                         onClick={() => handleModal(d.id, d.title)}
-                        data-cy='todo-item-delete-button'
+                        data-cy='modal-delete'
                         className="col-1 trash-icon"
                       >
                         <Trash />
@@ -441,7 +443,7 @@ export default function Detail() {
               <DropdownCutome sortTodos={sortTodos} data-cy='todo-sort-button' />
                 <button
                   onClick={() => setLgShow(true)}
-                  data-cy='todo-add-button'
+                data-cy='modal-add'
                   className="btn-plus-mod"
                 >
                   <Plus />

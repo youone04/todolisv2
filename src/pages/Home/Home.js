@@ -148,7 +148,6 @@ export default function Home() {
                         </div>
                         <div
                           className="col-1"
-                          data-cy='modal-delete'
                           onClick={(e) => deleteData(e, data.id, data.title)}
                         >
                           <Trash />
