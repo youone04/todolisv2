@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavbarComp from "../../components/NavbarComp/NavbarComp";
-import { Container, Card } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import moment from "moment";
 import "moment/locale/id";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +33,6 @@ export default function Home() {
   };
 
   useEffect(() => {
-    document.title = "TO DO LIST - HOME";
     getData();
   }, []);
 
@@ -64,8 +63,8 @@ export default function Home() {
     setTitle(title);
   };
   const toDetail = (id) => {
-    navigate(`/detail/${id}`)
-  }
+    navigate(`/detail/${id}`);
+  };
 
   return (
     <>
@@ -85,21 +84,14 @@ export default function Home() {
         ) : items.data.length <= 0 ? (
           <div className="mt-5">
             <div className="d-flex justify-content-between">
-              <h2 
-              data-cy='activity-title'
-              className="activity-title">Activity</h2>
-              <button
-              data-cy='activity-add-button'
-                onClick={() => postData()}
-                className="btn-plus-mod"
-              >
+              <h2 className="activity-title">Activity</h2>
+              <button onClick={() => postData()} className="btn-plus-mod">
                 <Plus />
                 Tambah
               </button>
             </div>
             <center>
               <img
-              data-cy='activity-add-button'
                 onClick={() => postData()}
                 src="https://ik.imagekit.io/mlnzyx/devcode-todo/new-todos_icWrDUS4D0.webp?updatedAt=1641870367004"
                 alt="to do list"
@@ -110,45 +102,32 @@ export default function Home() {
         ) : (
           <div className="card-items">
             <div className="d-flex justify-content-between">
-              <h2 
-              data-cy='activity-title'
-              className="activity-title">Activity</h2>
-              <button 
-              data-cy='activity-add-button'
-              onClick={() => postData()} className="btn-plus-mod">
+              <h2 className="activity-title">Activity</h2>
+              <button onClick={() => postData()} className="btn-plus-mod">
                 <Plus />
                 Tambah
               </button>
             </div>
 
-            <div className="d-flex row mt-5">
+            <div className="row mt-5 g-2">
               {items.data.map((data, i) => {
                 return (
-                  <Card
-                    onClick={() => toDetail(data.id)}
-                    data-cy='activity-item'
-                    className="col-sm-12 col-md-2 col-lg-4 shadow-mod"
-                    key={i}
-                    style={{
-                      marginLeft: 15,
-                      marginTop: 10,
-                      cursor: "pointer",
-                      width: "14em",
-                      marginBottom: 10,
-                    }}
+                  <div 
+                  className="col-3" 
+                  onClick={() => toDetail(data.id)}
+                  data-cy='activity-item'
                   >
-                    <Card.Body>
-                      <Card.Title>
-                        <p 
-                        data-cy='activity-item-title'
-                        className="title-card">
-                          {data.title}
-                        </p>
-                      </Card.Title>
-                      <Card.Text style={{ height: 135 }}></Card.Text>
+                    <div
+                      style={{
+                        cursor: "pointer",
+                      }}
+                      className="p-3 border bg-white rounded"
+                    >
+                      <h4 data-cy='activity-item-title'>{data.title}</h4>
+                      <div style={{ height: 180 }}></div>
                       <div className="d-flex">
                         <div className="col-11">
-                         <p data-cy='activity-item-date' > {moment(data.created_at).format("LL")}</p>
+                          <p data-cy='activity-item-date'> {moment(data.created_at).format("LL")}</p>
                         </div>
                         <div
                           className="col-1"
@@ -158,9 +137,8 @@ export default function Home() {
                           <Trash />
                         </div>
                       </div>
-                    </Card.Body>
-                  </Card>
-                  
+                    </div>
+                  </div>
                 );
               })}
             </div>

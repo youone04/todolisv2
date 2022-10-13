@@ -34,19 +34,19 @@ export default function ModalDeleteItem(props) {
     >
       <Modal.Body>
       <center>
-      <Danger data-cy='modal-delete-icon' />
-        <p data-cy="warning-delete-item" className="mt-5 warning-delete-item" 
+      <Danger />
+        <p  className="mt-5 warning-delete-item" 
         >
         Apakah anda yakin menghapus item <b> "{props.title}"</b>?
         </p>
         <Button 
-        data-cy="buton-cancel-delete-item"
         className="m-2 text-black button-cancel-delte-item" 
         onClick={props.onHide}>Batal</Button>
         <Button 
-        data-cy='modal-delete-confirm-button'
         className="bg-danger button-delete" 
-        onClick={handleDelete}>hapus</Button>
+        onClick={handleDelete}
+        data-cy='modal-delete-confirm-button'
+        >hapus</Button>
       </center>
       </Modal.Body>
     </Modal>

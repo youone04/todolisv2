@@ -18,10 +18,8 @@ export default function MyVerticallyCenteredModal(props) {
       );
       props.getdata();
       props.modal(false)
-      var htmlContent = `<div data-cy='modal-information'></div>`;
       swal({
         title: "",
-        html: htmlContent,
         text: "Activiy Berhasil Dihapus",
         icon: "success",
         dangerMode: false,
@@ -30,6 +28,7 @@ export default function MyVerticallyCenteredModal(props) {
 
   return (
     <Modal
+    data-cy='modal-delete'
      show={props.show}
      onHide={props.onHide}
       size="md"
@@ -39,8 +38,8 @@ export default function MyVerticallyCenteredModal(props) {
     >
       <Modal.Body>
       <center>
-      <Danger data-cy='modal-delete-icon' />
-        <p data-cy='warning-delete-item' 
+      <Danger />
+        <p 
         className="mt-5 warning-delete-activitis" 
         >
         Apakah anda yakin ingin menghapus Activity <b> "{props.title}"</b>?
@@ -48,12 +47,10 @@ export default function MyVerticallyCenteredModal(props) {
         <Button 
         className="m-2 text-black button-cancel-delete" 
         onClick={props.onHide}
-        data-cy='modal-delete-cancel-button'
         >Batal</Button>
         <Button 
         className="bg-danger button-delete"
          onClick={handleDelete}
-        data-cy='modal-delete-confirm-button'
         >Hapus</Button>
       </center>
       </Modal.Body>

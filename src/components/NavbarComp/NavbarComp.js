@@ -7,12 +7,11 @@ export default function NavbarComp() {
   return (
     <>
       <Navbar
-      data-cy="navbar-main"
       className="navbar-mod"
          >
         <Container>
           <Navbar.Brand href="/">
-          <h4 className="nav-title" data-cy="navbar-title" 
+          <h4 data-cy='header-title' className="nav-title"
           > TO DO LIST APP</h4>
           </Navbar.Brand>
         </Container>

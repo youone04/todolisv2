@@ -15,7 +15,6 @@ export default function ModalUpate(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title
-          data-cy="title-edit-item"
           id="example-modal-sizes-title-lg"
           className="edit-item-title"
         >
@@ -27,14 +26,12 @@ export default function ModalUpate(props) {
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>
               <span 
-              data-cy="label-edit-item" 
               className="label-form-edit"
               >
                 Nama List Item
               </span>
             </Form.Label>
             <Form.Control
-              data-cy="form-edit-item"
               className="form-edit"
               value={props.title}
               type="text"
@@ -49,7 +46,6 @@ export default function ModalUpate(props) {
           <div className="d-flex justify-content-between mt-3">
             <div></div>
             <Button
-              data-cy="button-ssave-edit-item"
               onClick={props.updatetItems}
               className="button-save-edit"
               type="button"

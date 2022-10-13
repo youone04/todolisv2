@@ -2,6 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import { Suspense } from 'react'
 import DropdownComp from "../../components/atoms/DropdownComp";
 import "./modal-add.css";
 
@@ -17,7 +18,6 @@ export default function ModalAdd(props) {
         <Modal.Title
           className="title-modall-add"
           id="example-modal-sizes-title-lg"
-          data-cy="modal-add-title"
         >
           Tambah List Item
         </Modal.Title>
@@ -26,18 +26,19 @@ export default function ModalAdd(props) {
         <Form>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>
-              <span data-cy="modal-add-label" className="label-modal-add">
+              <span  className="label-modal-add">
                 Nama List Item
               </span>
             </Form.Label>
-            {/* Form.Control */}
-            <input
+            <Suspense fallback={null}>
+            <Form.Control
               className="form-control-add"
               type="text"
               placeholder="Tambahkan Nama List Item"
               onChange={(e) => props.setTitle(e.target.value)}
               data-cy='modal-add-name-input'
             />
+            </Suspense>
           </Form.Group>
           <DropdownComp setPriority={props.setPriority} />
           <div className="d-flex justify-content-between mt-3">
@@ -45,7 +46,7 @@ export default function ModalAdd(props) {
             <Button
               onClick={props.postItems}
               data-cy='modal-add-save-button'
-              disabled={props.title === ""?true:false}
+              disabled={props.title.length > 0 ? false : true}
               className="button-modal-add"
               type="button"
             >

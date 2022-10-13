@@ -275,6 +275,7 @@ export default function Detail() {
                 <ChevronLeft onClick={() => navigate(-1)} />
                 <span
                   onClick={() => setEditTitle(true)}
+                  data-cy='todo-title'
                   className="btn-edit-title"
 
                 >
@@ -290,7 +291,6 @@ export default function Detail() {
                       }
                       onKeyDown={handleKeyPress}
                       onBlur={handleOnFocusOut}
-                      data-cy='todo-title'
                       type="text"
                       value={dataActivity.title}
                     />
@@ -306,11 +306,10 @@ export default function Detail() {
               </div>
 
               <div className="col-3 d-flex">
-                <DropdownCutome sortTodos={sortTodos} data-cy='todo-sort-button' />
+                <DropdownCutome sortTodos={sortTodos}/>
                 <button
                   onClick={() => setLgShow(true)}
                   data-cy='todo-add-button'
-                // data-cy='modal-add'
                   className="btn-plus-mod"
                 >
                   <Plus />
@@ -332,7 +331,6 @@ export default function Detail() {
                         />
                         <span className="icon-circle">
                           <button
-                            data-cy="circle-icon"
                             style={{
                               border: "none",
                               borderRadius: "50%",
@@ -359,20 +357,17 @@ export default function Detail() {
                           {d.is_active ? (
                             <span
                               className="title-activity-active"
-                              data-cy="title-activity"
                             >
                               {d.title}{" "}
                             </span>
                           ) : (
                             <span
-                              data-cy="title-activity"
                               className="title-activity"
                             >
                               {d.title}{" "}
                             </span>
                           )}
                           <span
-                            data-cy="button-title-update"
                             onClick={() =>
                               handleModalUpdate(
                                 d.priority,
@@ -390,7 +385,7 @@ export default function Detail() {
 
                       <div
                         onClick={() => handleModal(d.id, d.title)}
-                        data-cy='modal-delete'
+                        data-cy='todo-item-delete-button'
                         className="col-1 trash-icon"
                       >
                         <Trash />
@@ -409,12 +404,10 @@ export default function Detail() {
                 <span
                   className="btn-edit-title"
                   onClick={() => setEditTitle(true)}
-                  data-cy="button-edit-title-activity"
 
                 >
                   {editTitle ? (
                     <input
-                      data-cy="form-edit-title"
                       autoFocus
                       className="modif-input"
                       onChange={(e) =>
@@ -430,7 +423,7 @@ export default function Detail() {
                     />
                   ) : (
                     <>
-                      <b data-cy="title-activity">{dataActivity.title}</b>
+                      <b>{dataActivity.title}</b>
                       <span>
                         <Pen />
                       </span>
@@ -443,7 +436,7 @@ export default function Detail() {
               <DropdownCutome sortTodos={sortTodos} data-cy='todo-sort-button' />
                 <button
                   onClick={() => setLgShow(true)}
-                data-cy='modal-add'
+                  data-cy='todo-add-button'
                   className="btn-plus-mod"
                 >
                   <Plus />
