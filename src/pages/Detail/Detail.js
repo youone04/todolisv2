@@ -228,7 +228,6 @@ export default function Detail() {
         body: JSON.stringify(payload),
       }
     );
-
     await data.json();
     setEditTitle(false);
   };
@@ -421,6 +420,7 @@ export default function Detail() {
                         }))
                       }
                       onKeyDown={handleKeyPress}
+                      onBlur={handleOnFocusOut}
                       type="text"
                       value={dataActivity.title}
                     />
