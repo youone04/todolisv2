@@ -46,13 +46,14 @@ export default function MyVerticallyCenteredModal(props) {
         Apakah anda yakin ingin menghapus Activity <b> "{props.title}"</b>?
         </p>
         <Button 
-        data-cy='modal-delete-cancel-button'
         className="m-2 text-black button-cancel-delete" 
-        onClick={props.onHide}>Batal</Button>
+        onClick={props.onHide}
+        data-cy='modal-delete-cancel-button'
+        >Batal</Button>
         <Button 
         className="bg-danger button-delete"
          onClick={handleDelete}
-        // data-cy='modal-delete-confirm-button'
+        data-cy='modal-delete-confirm-button'
         >Hapus</Button>
       </center>
       </Modal.Body>

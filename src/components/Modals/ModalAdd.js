@@ -30,7 +30,8 @@ export default function ModalAdd(props) {
                 Nama List Item
               </span>
             </Form.Label>
-            <Form.Control
+            {/* Form.Control */}
+            <input
               className="form-control-add"
               type="text"
               placeholder="Tambahkan Nama List Item"
@@ -44,9 +45,9 @@ export default function ModalAdd(props) {
             <Button
               onClick={props.postItems}
               data-cy='modal-add-save-button'
+              disabled={props.title === ""?true:false}
               className="button-modal-add"
               type="button"
-              disabled={props.title === ""?true:false}
             >
               SIMPAN
             </Button>

@@ -63,6 +63,9 @@ export default function Home() {
     setId(id);
     setTitle(title);
   };
+  const toDetail = (id) => {
+    navigate(`/detail/${id}`)
+  }
 
   return (
     <>
@@ -118,11 +121,12 @@ export default function Home() {
               </button>
             </div>
 
-            <div  data-cy='activity-item' className="d-flex row mt-5">
+            <div className="d-flex row mt-5">
               {items.data.map((data, i) => {
                 return (
                   <Card
-                    onClick={() => navigate(`/detail/${data.id}`)}
+                    onClick={() => toDetail(data.id)}
+                    data-cy='activity-item'
                     className="col-sm-12 col-md-2 col-lg-4 shadow-mod"
                     key={i}
                     style={{
@@ -149,6 +153,7 @@ export default function Home() {
                         <div
                           className="col-1"
                           onClick={(e) => deleteData(e, data.id, data.title)}
+                          data-cy='activity-item-delete-button'
                         >
                           <Trash />
                         </div>

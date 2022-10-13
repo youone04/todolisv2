@@ -275,7 +275,6 @@ export default function Detail() {
                 <ChevronLeft onClick={() => navigate(-1)} />
                 <span
                   onClick={() => setEditTitle(true)}
-                  data-cy='todo-title'
                   className="btn-edit-title"
 
                 >
@@ -310,7 +309,8 @@ export default function Detail() {
                 <DropdownCutome sortTodos={sortTodos} data-cy='todo-sort-button' />
                 <button
                   onClick={() => setLgShow(true)}
-                data-cy='modal-add'
+                  data-cy='todo-add-button'
+                // data-cy='modal-add'
                   className="btn-plus-mod"
                 >
                   <Plus />
