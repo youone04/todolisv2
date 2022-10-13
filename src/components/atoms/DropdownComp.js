@@ -33,9 +33,9 @@ function DropdownComp({ setPriority, priority }) {
         >Priority</span>
       </Form.Label>
       <Form.Select
-        data-cy="form-select-item"
         className="form-select"
         aria-label="Default select example"
+        data-cy='modal-add-priority-dropdown'
         onChange={(e) => setPriority(e.target.value)}
         defaultValue={priority}
       >

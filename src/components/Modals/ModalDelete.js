@@ -18,7 +18,7 @@ export default function MyVerticallyCenteredModal(props) {
       );
       props.getdata();
       props.modal(false)
-      swal("", "Activiy Berhasil Dihapus", "success");
+      swal("", `Activiy Berhasil Dihapus`, "success");
   };
 
   return (
@@ -39,11 +39,11 @@ export default function MyVerticallyCenteredModal(props) {
         Apakah anda yakin ingin menghapus Activity <b> "{props.title}"</b>?
         </p>
         <Button 
-        data-cy='button-cancel-delete'
+        data-cy='modal-delete-cancel-button'
         className="m-2 text-black button-cancel-delete" 
         onClick={props.onHide}>Batal</Button>
         <Button 
-        data-cy='button-confirm-delete'
+        data-cy='modal-delete'
         className="bg-danger button-delete" onClick={handleDelete}>Hapus</Button>
       </center>
       </Modal.Body>

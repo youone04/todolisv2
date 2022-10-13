@@ -273,7 +273,7 @@ export default function Detail() {
               <div className="col-9">
                 <ChevronLeft onClick={() => navigate(-1)} />
                 <span
-                  data-cy="button-edit-title"
+                  data-cy='todo-title'
                   onClick={() => setEditTitle(true)}
                   className="btn-edit-title"
                 >
@@ -307,7 +307,7 @@ export default function Detail() {
               <div className="col-3 d-flex">
                 <DropdownCutome sortTodos={sortTodos} />
                 <button
-                  data-cy="icon-cirle"
+                  data-cy='todo-add-button'
                   onClick={() => setLgShow(true)}
                   className="btn-plus-mod"
                 >
@@ -438,7 +438,7 @@ export default function Detail() {
               <div className="d-flex col-3">
                 <Sort />
                 <button
-                  data-cy="sort-item"
+                 data-cy='todo-add-button'
                   onClick={() => setLgShow(true)}
                   className="btn-plus-mod"
                 >
@@ -451,8 +451,8 @@ export default function Detail() {
             <div className="d-flex row container justify-content-center mt-5">
               <center>
                 <img
+                data-cy='todo-add-button'
                  onClick={() => setLgShow(true)}
-                  data-cy="image-empty-item"
                   src="https://ik.imagekit.io/mlnzyx/devcode-todo/new-todos_icWrDUS4D0.webp?updatedAt=1641870367004"
                   alt="to do list"
                   className="mt-5"

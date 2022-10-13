@@ -33,7 +33,7 @@ export default function ModalAdd(props) {
             <Form.Control
               className="form-control-add"
               type="text"
-              data-cy="modal-add-form-title"
+              data-cy='modal-add-name-input'
               placeholder="Tambahkan Nama List Item"
               onChange={(e) => props.setTitle(e.target.value)}
             />
@@ -42,7 +42,7 @@ export default function ModalAdd(props) {
           <div className="d-flex justify-content-between mt-3">
             <div></div>
             <Button
-              data-cy="modal-add-button"
+              data-cy='modal-add-save-button'
               onClick={props.postItems}
               className="button-modal-add"
               type="button"
