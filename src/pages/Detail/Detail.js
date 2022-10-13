@@ -451,6 +451,7 @@ export default function Detail() {
             <div className="d-flex row container justify-content-center mt-5">
               <center>
                 <img
+                 onClick={() => setLgShow(true)}
                   data-cy="image-empty-item"
                   src="https://ik.imagekit.io/mlnzyx/devcode-todo/new-todos_icWrDUS4D0.webp?updatedAt=1641870367004"
                   alt="to do list"
