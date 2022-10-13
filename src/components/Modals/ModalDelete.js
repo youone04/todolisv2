@@ -50,8 +50,10 @@ export default function MyVerticallyCenteredModal(props) {
         className="m-2 text-black button-cancel-delete" 
         onClick={props.onHide}>Batal</Button>
         <Button 
-        data-cy='modal-delete-confirm-button'
-        className="bg-danger button-delete" onClick={handleDelete}>Hapus</Button>
+        className="bg-danger button-delete"
+         onClick={handleDelete}
+        // data-cy='modal-delete-confirm-button'
+        >Hapus</Button>
       </center>
       </Modal.Body>
     </Modal>

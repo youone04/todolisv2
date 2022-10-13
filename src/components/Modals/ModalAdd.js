@@ -33,17 +33,17 @@ export default function ModalAdd(props) {
             <Form.Control
               className="form-control-add"
               type="text"
-              data-cy='modal-add-name-input'
               placeholder="Tambahkan Nama List Item"
               onChange={(e) => props.setTitle(e.target.value)}
+              data-cy='modal-add-name-input'
             />
           </Form.Group>
           <DropdownComp setPriority={props.setPriority} />
           <div className="d-flex justify-content-between mt-3">
             <div></div>
             <Button
-              data-cy='modal-add-save-button'
               onClick={props.postItems}
+              data-cy='modal-add-save-button'
               className="button-modal-add"
               type="button"
             >

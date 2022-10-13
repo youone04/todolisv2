@@ -118,11 +118,10 @@ export default function Home() {
               </button>
             </div>
 
-            <div className="d-flex row mt-5">
+            <div  data-cy='activity-item' className="d-flex row mt-5">
               {items.data.map((data, i) => {
                 return (
                   <Card
-                  data-cy='activity-item'
                     onClick={() => navigate(`/detail/${data.id}`)}
                     className="col-sm-12 col-md-2 col-lg-4 shadow-mod"
                     key={i}
@@ -149,7 +148,7 @@ export default function Home() {
                         </div>
                         <div
                           className="col-1"
-                          data-cy='activity-item-delete-button'
+                          data-cy='modal-delete'
                           onClick={(e) => deleteData(e, data.id, data.title)}
                         >
                           <Trash />
@@ -157,6 +156,7 @@ export default function Home() {
                       </div>
                     </Card.Body>
                   </Card>
+                  
                 );
               })}
             </div>

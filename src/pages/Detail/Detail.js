@@ -273,13 +273,13 @@ export default function Detail() {
               <div className="col-9">
                 <ChevronLeft onClick={() => navigate(-1)} />
                 <span
-                  data-cy='todo-title'
                   onClick={() => setEditTitle(true)}
+                  data-cy='todo-title'
                   className="btn-edit-title"
+
                 >
                   {editTitle ? (
                     <input
-                      data-cy="form-edit"
                       autoFocus
                       className="modif-input"
                       onChange={(e) =>
@@ -295,7 +295,7 @@ export default function Detail() {
                     />
                   ) : (
                     <>
-                      <b data-cy="title-activity">{dataActivity.title}</b>
+                      <b data-cy='todo-title'>{dataActivity.title}</b>
                       <span>
                         <Pen />
                       </span>
@@ -305,10 +305,10 @@ export default function Detail() {
               </div>
 
               <div className="col-3 d-flex">
-                <DropdownCutome data-cy='todo-sort-button' sortTodos={sortTodos} />
+                <DropdownCutome sortTodos={sortTodos} data-cy='todo-sort-button' />
                 <button
-                  data-cy='todo-add-button'
                   onClick={() => setLgShow(true)}
+                  data-cy='todo-add-button'
                   className="btn-plus-mod"
                 >
                   <Plus />
@@ -327,7 +327,6 @@ export default function Detail() {
                           getDetail={getDetail}
                           active={d.is_active}
                           id={d.id}
-                          data-cy='todo-item-checkbox'
                         />
                         <span className="icon-circle">
                           <button
@@ -388,8 +387,8 @@ export default function Detail() {
                       </div>
 
                       <div
-                        data-cy='todo-item-delete-button'
                         onClick={() => handleModal(d.id, d.title)}
+                        data-cy='todo-item-delete-button'
                         className="col-1 trash-icon"
                       >
                         <Trash />
@@ -406,9 +405,10 @@ export default function Detail() {
               <div className="col-9">
                 <ChevronLeft onClick={() => navigate(-1)} />
                 <span
-                  data-cy="button-edit-title-activity"
                   className="btn-edit-title"
                   onClick={() => setEditTitle(true)}
+                  data-cy="button-edit-title-activity"
+
                 >
                   {editTitle ? (
                     <input
@@ -438,10 +438,10 @@ export default function Detail() {
               </div>
 
               <div className="d-flex col-3">
-                <Sort />
+              <DropdownCutome sortTodos={sortTodos} data-cy='todo-sort-button' />
                 <button
-                 data-cy='todo-add-button'
                   onClick={() => setLgShow(true)}
+                  data-cy='todo-add-button'
                   className="btn-plus-mod"
                 >
                   <Plus />
@@ -453,7 +453,6 @@ export default function Detail() {
             <div className="d-flex row container justify-content-center mt-5">
               <center>
                 <img
-                data-cy='todo-add-button'
                  onClick={() => setLgShow(true)}
                   src="https://ik.imagekit.io/mlnzyx/devcode-todo/new-todos_icWrDUS4D0.webp?updatedAt=1641870367004"
                   alt="to do list"
