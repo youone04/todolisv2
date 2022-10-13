@@ -18,7 +18,14 @@ export default function MyVerticallyCenteredModal(props) {
       );
       props.getdata();
       props.modal(false)
-      swal("", `Activiy Berhasil Dihapus`, "success");
+      var htmlContent = `<div data-cy='modal-information'></div>`;
+      swal({
+        title: "",
+        html: htmlContent,
+        text: "Activiy Berhasil Dihapus",
+        icon: "success",
+        dangerMode: false,
+      })
   };
 
   return (
@@ -43,7 +50,7 @@ export default function MyVerticallyCenteredModal(props) {
         className="m-2 text-black button-cancel-delete" 
         onClick={props.onHide}>Batal</Button>
         <Button 
-        data-cy='modal-delete'
+        data-cy='modal-delete-confirm-button'
         className="bg-danger button-delete" onClick={handleDelete}>Hapus</Button>
       </center>
       </Modal.Body>

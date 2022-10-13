@@ -305,7 +305,7 @@ export default function Detail() {
               </div>
 
               <div className="col-3 d-flex">
-                <DropdownCutome sortTodos={sortTodos} />
+                <DropdownCutome data-cy='todo-sort-button' sortTodos={sortTodos} />
                 <button
                   data-cy='todo-add-button'
                   onClick={() => setLgShow(true)}
@@ -327,6 +327,7 @@ export default function Detail() {
                           getDetail={getDetail}
                           active={d.is_active}
                           id={d.id}
+                          data-cy='todo-item-checkbox'
                         />
                         <span className="icon-circle">
                           <button
@@ -387,6 +388,7 @@ export default function Detail() {
                       </div>
 
                       <div
+                        data-cy='todo-item-delete-button'
                         onClick={() => handleModal(d.id, d.title)}
                         className="col-1 trash-icon"
                       >

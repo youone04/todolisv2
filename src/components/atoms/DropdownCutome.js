@@ -28,7 +28,7 @@ const DropdownCustome = (props) => {
       <Dropdown.Menu
         onClick={(e) => props.sortTodos(e.target.text)}
         className="mt-5 menu-dropdown-mod"
-        data-cy='menu-dropdown'
+        data-cy='todo-sort-button'
         // style={{ width: 230 }}
       >
         <Dropdown.Item eventKey="1">
