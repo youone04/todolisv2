@@ -1,10 +1,10 @@
 import { memo } from 'react'
 
-const ChevronLeft = ({ className = 'h-6 w-6', ...props }) => (
+const ChevronLeft = ({ className = 'h-6 w-6 mb-1', ...props }) => (
   <svg
     {...props}
     xmlns='http://www.w3.org/2000/svg'
-    style={{color:'#D8D9CF',cursor:'pointer', width: '4%', border:'solid 1px #EDEDED', borderRadius:'50%',marginRight: 8 }}
+    style={{cursor:'pointer', width: '4%', border:'solid 1px #EDEDED', borderRadius:'50%',marginRight: 8 }}
     className={className}
     fill='none'
     viewBox='0 0 24 24'

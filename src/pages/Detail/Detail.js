@@ -275,9 +275,9 @@ export default function Detail() {
 
             {items.data.map((d, i) => {
               return (
-                <Card key={i} className="mt-3" style={{ width: "92%" }}>
+                <Card key={i} className="mt-3 shadow-mod" style={{ width: "92%",height: 70 }}>
                   <Card.Body>
-                    <div className="d-flex">
+                    <div className="d-flex mt-1">
                       <div className="col-11">
                         <InputComp
                           getDetail={getDetail}
@@ -289,8 +289,8 @@ export default function Detail() {
                             style={{
                               border: "none",
                               borderRadius: "50%",
-                              width: 18,
-                              height: 18,
+                              width: 15,
+                              height: 15,
                               backgroundColor:
                                 d.priority === "very-high"
                                   ? "red"
@@ -353,16 +353,30 @@ export default function Detail() {
         ) : (
           <div className="mt-5">
             <div className="d-flex justify-content-between">
-              <div className="col-8">
+              <div className="col-9">
                 <ChevronLeft onClick={() => navigate(-1)} />
-                <span style={{ fontSize: 27 }}>
-                  <b>{dataActivity.title}</b>
+                <span
+                  onClick={() => setEditTitle(true)}
+                  style={{ fontSize: 27 }}
+                >
+                  {editTitle ? (
+                    <input autoFocus className="modif-input" onChange={(e) => setDataActivity( prev => ({
+                      ...prev,
+                      title: e.target.value
+                    }))} onKeyDown={handleKeyPress} type="text" value={dataActivity.title} />
+                  ) : (
+                    <>
+                      <b>{dataActivity.title}</b>
+                      <span>
+                        <Pen />
+                      </span>
+                    </>
+                  )}
                 </span>
-                <Pen />
               </div>
 
-              <div className="col-4">
-                <Sort />
+              <div className="d-flex col-3">
+             <Sort />
                 <button
                   onClick={() => setLgShow(true)}
                   style={{
@@ -382,7 +396,7 @@ export default function Detail() {
               </div>
             </div>
 
-            <div className="d-flex row container justify-content-center">
+            <div className="d-flex row container justify-content-center mt-5">
               <center>
                 <img
                   src="https://ik.imagekit.io/mlnzyx/devcode-todo/new-todos_icWrDUS4D0.webp?updatedAt=1641870367004"

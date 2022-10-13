@@ -6,3 +6,7 @@ input.modif-input {
 }
 
 input:focus.modif-input{outline:none!important;}
+input.input-checbox{
+    width: 18px;
+    height: 18px;
+}

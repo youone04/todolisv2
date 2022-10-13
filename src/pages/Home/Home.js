@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import MyVerticallyCenteredModal from "../../components/Modals/ModalDelete";
 import Plus from "../../components/icons/Plus";
 import Trash from "../../components/icons/Trash";
+import './home.css';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -70,13 +71,13 @@ export default function Home() {
         id={id}
         type={'Activity'}
       />
-      <Container>
+      <Container style={{ width: '75%' }}>
         {items.loading ? (
           <p>loading</p>
         ) : items.data.length <= 0 ? (
           <div className="mt-5">
             <div className="d-flex justify-content-between">
-              <h2>Activity</h2>
+              <h2 className="activity-title">Activity</h2>
               <button
                 onClick={() => postData()}
                 style={{
@@ -103,14 +104,15 @@ export default function Home() {
             </center>
           </div>
         ) : (
-          <div className="mt-5">
+          <div className="card-items">
             <div className="d-flex justify-content-between">
-              <h2>Activity</h2>
+              <h2 className="activity-title">Activity</h2>
               <button
                 onClick={() => postData()}
                 style={{
                   backgroundColor: "#16ABF8",
                   fontSize: 23,
+                  height: 60,
                   color: "white",
                   padding: 15,
                   width: 160,
@@ -124,22 +126,24 @@ export default function Home() {
               </button>
             </div>
 
-            <div className="d-flex row container justify-content-center">
+            <div className="d-flex row mt-5">
               {items.data.map((data, i) => {
                 return (
                   <Card
                     onClick={() => navigate(`/detail/${data.id}`)}
-                    className="col-3"
+                    className="col-4 shadow-mod"
                     key={i}
                     style={{
                       marginLeft: 15,
                       marginTop: 10,
                       cursor: "pointer",
+                      width:'14em',
+                      marginBottom: 10
                     }}
                   >
                     <Card.Body>
-                      <Card.Title>{data.title}</Card.Title>
-                      <Card.Text style={{ height: 150 }}></Card.Text>
+                      <Card.Title><p className="title-card">{data.title}</p></Card.Title>
+                      <Card.Text style={{ height: 135 }}></Card.Text>
                       <div className="d-flex">
                         <div className="col-11">
                           {moment(data.created_at).format("LL")}
@@ -149,10 +153,6 @@ export default function Home() {
                           onClick={(e) => deleteData(e, data.id)}
                         >
                           <Trash
-                            // onClick={(e) => {
-                            //   e.stopPropagation();
-                            //   showModalAlert();
-                            // }}
                             data-cy="activity-item-delete-button"
                           />
                         </div>
