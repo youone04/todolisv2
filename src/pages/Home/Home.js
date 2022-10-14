@@ -82,7 +82,7 @@ export default function Home() {
         {items.loading ? (
           <p>loading</p>
         ) : items.data.length <= 0 ? (
-          <div className="mt-5">
+          <div  data-cy='activity-empty-state' className="mt-5">
             <div className="d-flex justify-content-between">
               <h2 className="activity-title">Activity</h2>
               <button onClick={() => postData()} className="btn-plus-mod">
@@ -103,19 +103,18 @@ export default function Home() {
           <div className="card-items">
             <div className="d-flex justify-content-between">
               <h2 className="activity-title">Activity</h2>
-              <button onClick={() => postData()} className="btn-plus-mod">
+              <button data-cy='activity-add-button' onClick={() => postData()} className="btn-plus-mod">
                 <Plus />
                 Tambah
               </button>
             </div>
 
-            <div className="row mt-5 g-2">
+            <div data-cy='activity-item' className="row mt-5 g-2">
               {items.data.map((data, i) => {
                 return (
                   <div 
                   className="col-3" 
                   onClick={() => toDetail(data.id)}
-                  data-cy='activity-item'
                   >
                     <div
                       style={{
