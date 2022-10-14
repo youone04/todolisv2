@@ -45,8 +45,8 @@ export default function ModalAdd(props) {
             <div></div>
             <Button
               onClick={props.postItems}
-              data-cy='modal-add-save-button'
               disabled={props.title.length > 0 ? false : true}
+              data-cy='modal-add-save-button'
               className="button-modal-add"
               type="button"
             >
