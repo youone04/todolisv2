@@ -44,8 +44,9 @@ export default function MyVerticallyCenteredModal(props) {
           </p>
           <Button
             className="m-2 text-black button-cancel-delete"
+            data-cy='modal-delete-cancel-button'
             onClick={props.onHide}
-            ata-cy='modal-delete-cancel-button'
+           
           >
             Batal
           </Button>

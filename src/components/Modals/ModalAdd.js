@@ -35,8 +35,9 @@ export default function ModalAdd(props) {
               className="form-control-add"
               type="text"
               placeholder="Tambahkan Nama List Item"
-              onChange={(e) => props.setTitle(e.target.value)}
               data-cy='modal-add-name-input'
+              onChange={(e) => props.setTitle(e.target.value)}
+             
             />
             </Suspense>
           </Form.Group>

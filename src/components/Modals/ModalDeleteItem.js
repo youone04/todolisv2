@@ -43,8 +43,8 @@ export default function ModalDeleteItem(props) {
         className="m-2 text-black button-cancel-delte-item" 
         onClick={props.onHide}>Batal</Button>
         <Button 
-        onClick={handleDelete}
         data-cy='modal-delete-confirm-button'
+        onClick={handleDelete}
         className="bg-danger button-delete" 
         >hapus</Button>
       </center>

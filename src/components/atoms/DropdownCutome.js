@@ -18,16 +18,17 @@ const DropdownCutome = React.forwardRef(({ onClick }, ref) => (
 const DropdownCustome = (props) => {
   return (
     <Dropdown>
-      <Dropdown.Toggle 
-      as={DropdownCutome} 
-      data-cy='todo-sort-button'
-      id="dropdown-custom-components">
+      <Dropdown.Toggle
+        data-cy="todo-sort-button"
+        as={DropdownCutome}
+        id="dropdown-custom-components"
+      >
         Custom toggle
       </Dropdown.Toggle>
 
       <Dropdown.Menu
+        data-cy="todo-sort-button"
         onClick={(e) => props.sortTodos(e.target.text)}
-        data-cy='todo-sort-button'
         className="mt-5 menu-dropdown-mod"
       >
         <Dropdown.Item eventKey="1">

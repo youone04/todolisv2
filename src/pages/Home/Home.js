@@ -131,8 +131,8 @@ export default function Home() {
                         </div>
                         <div
                           className="col-1"
-                          onClick={(e) => deleteData(e, data.id, data.title)}
                           data-cy='activity-item-delete-button'
+                          onClick={(e) => deleteData(e, data.id, data.title)}
                         >
                           <Trash />
                         </div>

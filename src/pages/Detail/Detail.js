@@ -274,8 +274,8 @@ export default function Detail() {
               <div className="col-9">
                 <ChevronLeft onClick={() => navigate(-1)} />
                 <span
+                data-cy='todo-title'
                   onClick={() => setEditTitle(true)}
-                  data-cy='todo-title'
                   className="btn-edit-title"
 
                 >
@@ -384,8 +384,8 @@ export default function Detail() {
                       </div>
 
                       <div
+                       data-cy='todo-item-delete-button'
                         onClick={() => handleModal(d.id, d.title)}
-                        data-cy='todo-item-delete-button'
                         className="col-1 trash-icon"
                       >
                         <Trash />
@@ -435,8 +435,8 @@ export default function Detail() {
               <div className="d-flex col-3">
               <DropdownCutome sortTodos={sortTodos} data-cy='todo-sort-button' />
                 <button
+                 data-cy='todo-add-button'
                   onClick={() => setLgShow(true)}
-                  data-cy='todo-add-button'
                   className="btn-plus-mod"
                 >
                   <Plus />

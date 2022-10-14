@@ -31,8 +31,8 @@ export default function InputComp(props) {
     <input
       className="input-checbox"
       type={"checkbox"}
-      onChange={handleCheckbox}
       data-cy='todo-item-checkbox'
+      onChange={handleCheckbox}
       checked={checked}
     />
   );
